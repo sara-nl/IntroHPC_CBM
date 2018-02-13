@@ -1,0 +1,16 @@
+#!/bin/bash
+#SBATCH --job-name="test_multinode"
+#SBATCH --nodes=2
+#SBATCH --tasks-per-nodes=3
+#SBATCH --time=00:02:00
+#SBATCH --workdir=. 
+#SBATCH --output=multinode_%j.out
+#SBATCH --error=multinode_%j.err 
+
+echo "Hey, this time I brought some friends"
+
+srun hostname
+
+sleep 600
+
+echo "Ciao"
