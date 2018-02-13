@@ -12,4 +12,6 @@ whoami
 echo "Where ?"
 hostname
 
+sleep 600
 
+echo "Ciao"
