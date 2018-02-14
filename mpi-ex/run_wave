@@ -15,8 +15,8 @@ SUBMDIR=$PWD
 
 mkdir -p $SCRATCH || exit 1
 
-cp wave      $SCRATCH
-cp h2anim.pl $SCRATCH 
+cp wave       $SCRATCH
+cp h52anim.pl $SCRATCH 
 
 cd $SCRATCH 
 
