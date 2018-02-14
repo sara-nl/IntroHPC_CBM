@@ -1,0 +1,46 @@
+#!/bin/bash
+#PBS -lnodes=1,walltime=0:05:00
+
+if [ -n "$PBS_O_WORKDIR" ]; then
+  cd "$PBS_O_WORKDIR"
+fi
+
+# grid definition
+
+# grid-size in x and y-direction
+m=200 
+n=200
+
+# mesh size
+dx=1.0
+dy=1.0
+
+# time step
+dt=0.01
+
+# wave propagation speed
+c=0.3
+
+# damping
+zeta=0.0
+
+# number of time steps, output interval
+nt=100000
+nt_i=1000
+
+
+# initial condition: a cosine bump around (f0x0,f0y0) with radius f0r0
+f0x0=50.0
+f0y0=100.0
+f0r0=20.0
+
+outfile=wave.h5
+
+
+# if wave was compiled with OpenMPI support, set the number of threads
+# export OMP_NUM_THREADS=4
+
+mpiexec -n 16 \
+  ./wave $m $n $dx $dy $nt $dt $c $zeta $f0x0 $f0y0 $f0r0 $nt_i $outfile
+
+perl h52anim.pl wave.h5 u
