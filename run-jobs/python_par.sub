@@ -1,0 +1,49 @@
+#!/bin/bash
+#SBATCH --job-name="par_python"
+#SBATCH --ntasks=5
+#SBATCH --time=01:00:00
+#SBATCH --workdir=. 
+#SBATCH --output=par_python_%j.out
+#SBATCH --error=par_python_%j.err 
+
+# Loading python module
+module load python/2.7.13
+module list
+
+# Setting up variables
+SCRATCH=/gpfs/scratch/nct00/$USER/$SLURM_JOBID
+SUBMDIR=$PWD
+DIM="1000 2000 3000 4000 5000"
+
+echo " - copy pairwise.py to scratch" 
+mkdir -p $SCRATCH || exit 1
+cp pairwise.py $SCRATCH
+
+echo " - cd into scratch"
+cd $SCRATCH
+
+
+echo " - execute pairwise.py"
+chmod +x pairwise.py
+
+# LET'S TIME IT!!
+
+# SECONDS is a builtin variable that tracks the number of seconds since the shell was started
+SECONDS=0       # Initialized to 0 before running the exec
+
+for i in $DIM
+  do
+    ./pairwise.py $i > pairwise-par-$i.out &
+  done
+
+wait
+
+TIME=$SECONDS   # Time recorded after execution
+
+echo " - copy back results to starting dir"
+cp pairwise-par-*.out $SUBMDIR
+
+echo "Running time: " $TIME
+
+echo "Ciao"
+
