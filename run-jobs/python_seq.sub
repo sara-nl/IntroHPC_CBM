@@ -11,7 +11,7 @@ module load python/2.7.13
 module list
 
 # Setting up variables
-SCRATCH=/gpfs/scratch/nct00/nct00004/$SLURM_JOBID
+SCRATCH=/gpfs/scratch/nct00/$USER/$SLURM_JOBID
 SUBMDIR=$PWD
 DIM=5000
 
