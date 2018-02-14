@@ -1,9 +1,24 @@
 #!/bin/bash
-#PBS -lnodes=1,walltime=0:05:00
+#SBATCH --job-name="wave"
+#SBATCH --ntasks=192
+#SBATCH --time=01:00:00
+#SBATCH --workdir=.
+#SBATCH --output=wave_%j.out
+#SBATCH --error=wave_%j.err
 
-if [ -n "$PBS_O_WORKDIR" ]; then
-  cd "$PBS_O_WORKDIR"
-fi
+module load intel
+module load impi
+module load hdf5
+
+SCRATCH=/gpfs/scratch/nct00/$USER/$SLURM_JOBID
+SUBMDIR=$PWD
+
+mkdir -p $SCRATCH || exit 1
+
+cp wave      $SCRATCH
+cp h2anim.pl $SCRATCH 
+
+cd $SCRATCH 
 
 # grid definition
 
@@ -40,7 +55,9 @@ outfile=wave.h5
 # if wave was compiled with OpenMPI support, set the number of threads
 # export OMP_NUM_THREADS=4
 
-mpiexec -n 16 \
+srun \
   ./wave $m $n $dx $dy $nt $dt $c $zeta $f0x0 $f0y0 $f0r0 $nt_i $outfile
 
 perl h52anim.pl wave.h5 u
+
+cp wave.h5 wave.h5.gif $SUBMDIR
