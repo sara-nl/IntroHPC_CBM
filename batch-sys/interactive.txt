@@ -1,0 +1,9 @@
+# Interactive Sessions
+Allocation of an interactive session in the interactive partition has to be done through SLURM:
+
+$ salloc -p interactive
+
+once the allocation has been granted you can ssh to the reserved nodes (login4) and play with it.
+
+salloc command accept the same directives as sbatch.
+
