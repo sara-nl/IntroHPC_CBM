@@ -7,7 +7,7 @@ int main(int argc, char **argv)
 	// show error if no argument is passed
 	if (argc < 2)
 	{
-		printf("Error! At least one argument needed.");
+		printf("Error! At least one argument needed.\n");
 		return 2;
 	}
 
@@ -19,7 +19,7 @@ int main(int argc, char **argv)
 		// show error if the user enters a negative integer
 		if (n < 0)
 		{
-			printf("Error! Factorial of a negative number doesn't exist.");
+			printf("Error! Factorial of a negative number doesn't exist.\n");
 			return 2;
 		}
 

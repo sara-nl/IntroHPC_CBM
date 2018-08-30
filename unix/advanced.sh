@@ -2,25 +2,27 @@
 # A more advanced bash script.
 # <- this is a comment and everything that follow is ignored
 
-echo "Hi, I'm your second script."
-echo
+args=$# # Number of args passed.
 
-NUM_START=10
-
-if [ $# = 0 ]
+if [ $args = 0 ]
 then
  echo "This script needs a number as argument input."
- echo "Ex: ./advanced_script.sh 1"
+ echo "Ex: ./advanced.sh 10"
  exit
 fi
 
-echo "The number you gave me is:" $1
+num=$1 # First argument passed.
 
-mkdir result
+echo "The input number is:" $1 
+echo
 
-cd result
-echo "$NUM_START / $1" | bc > $USER.log 2> $USER.err
+cd src
+
+gcc -o ../fact.exe fact.c 1> compile.log 2> compile.err # Redirect stdout and stderr to files
+
 cd ..
 
+./fact.exe $num | tee fact.log # Pipe output into command
 
+echo
 echo "Done"
