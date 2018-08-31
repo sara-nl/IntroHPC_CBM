@@ -10,38 +10,16 @@
 module load python/2.7.13
 module list
 
-# Setting up variables
-SCRATCH=/gpfs/scratch/nct00/$USER/$SLURM_JOBID
-SUBMDIR=$PWD
-DIM=5000
+touch pairwise-par.out
 
-# Create and move files to scratch
-echo " - copy pairwise.py to scratch" 
-mkdir -p $SCRATCH || exit 1
-cp pairwise.py $SCRATCH 
-
-echo " - cd into scratch"
-cd $SCRATCH
-
-
-# Run python code
-echo " - execute pairwise.py"
-chmod +x pairwise.py
-
-# LET'S TIME IT!!
-
-# SECONDS (builtin var) that tracks the number of seconds since the shell was started
+# SECONDS is a builtin variable that tracks the number of seconds since the shell was started
 SECONDS=0       # Initialized to 0 before running the exec
 
-./pairwise.py $DIM > pairwise-$DIM.out
+for i in 10
+  do
+    python pairwise.py 2000 >> pairwise-par.out
+  done
 
 TIME=$SECONDS   # Time recorded after execution
 
-# Copy back results and final prints
-echo " - copy back results to starting dir"
-cp pairwise-$DIM.out $SUBMDIR
-
 echo "Running time: " $TIME
-
-echo "Ciao"
-

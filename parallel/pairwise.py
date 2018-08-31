@@ -24,6 +24,8 @@ if __name__ == "__main__":
    X = np.random.random((dim, 3))
 
    res = pairwise_python(X)
+   min_dis = res[res!=0].min()
+   min_pos = np.where(res == min_dis)
 
-   print res
+   print "Distance: {0} | Points: {1}".format(min_dis,list(min_pos[0]))
 
