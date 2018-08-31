@@ -7,8 +7,12 @@
 #SBATCH --output=multinode_%j.out
 #SBATCH --error=multinode_%j.err 
 
+echo "Who am I?"
+whoami
+
+echo "Where ?"
 srun hostname
 
-sleep 100
+sleep 600
 
 echo "Ciao"
