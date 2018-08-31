@@ -10,14 +10,12 @@
 module load python/2.7.13
 module list
 
-touch pairwise-par.out
-
 # SECONDS is a builtin variable that tracks the number of seconds since the shell was started
 SECONDS=0       # Initialized to 0 before running the exec
 
 for i in 10
   do
-    python pairwise.py 2000 >> pairwise-par.out
+    python pairwise.py 2000 
   done
 
 TIME=$SECONDS   # Time recorded after execution

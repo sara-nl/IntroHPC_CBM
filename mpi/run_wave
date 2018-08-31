@@ -11,7 +11,6 @@ module load impi
 module load hdf5
 
 SCRATCH=/gpfs/scratch/nct00/$USER/$SLURM_JOBID
-SUBMDIR=$PWD
 
 mkdir -p $SCRATCH || exit 1
 
@@ -60,4 +59,4 @@ srun \
 
 perl h52anim.pl wave.h5 u
 
-cp wave.h5 wave.h5.gif $SUBMDIR
+cp wave.h5 wave.h5.gif $SLURM_SUBMIT_DIR
