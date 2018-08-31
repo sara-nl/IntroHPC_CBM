@@ -1,6 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name="par_python"
 #SBATCH --ntasks=10
+#SBATCH --qos=training
 #SBATCH --time=01:00:00
 #SBATCH --workdir=. 
 #SBATCH --output=par_python_%j.out
