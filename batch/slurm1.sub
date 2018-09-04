@@ -5,6 +5,8 @@
 #SBATCH --workdir=. 
 #SBATCH --output=serial_%j.out
 #SBATCH --error=serial_%j.err 
+#SBATCH --reservation=VPHSUMMER18
+
 
 echo "Who am I?"
 whoami

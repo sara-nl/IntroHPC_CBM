@@ -6,6 +6,8 @@
 #SBATCH --workdir=. 
 #SBATCH --output=multinode_%j.out
 #SBATCH --error=multinode_%j.err 
+#SBATCH --reservation=VPHSUMMER18
+
 
 echo "Who am I?"
 whoami
