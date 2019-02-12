@@ -8,7 +8,7 @@
 #SBATCH --error=seq_python_%j.err 
 
 # Loading python module
-module load python/2.7.13
+module load python
 module list
 
 # SECONDS is a builtin variable that tracks the number of seconds since the shell was started
