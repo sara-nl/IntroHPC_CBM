@@ -6,7 +6,6 @@
 #SBATCH --workdir=.
 #SBATCH --output=wave_%j.out
 #SBATCH --error=wave_%j.err
-#SBATCH --reservation=VPHSUMMER18
 
 module load intel
 module load impi
