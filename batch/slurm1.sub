@@ -14,6 +14,6 @@ whoami
 echo "Where ?"
 srun hostname
 
-sleep 600
+sleep 120
 
 echo "Ciao"
