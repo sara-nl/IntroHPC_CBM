@@ -3,11 +3,10 @@
 #SBATCH --nodes=2
 #SBATCH --tasks-per-node=3
 #SBATCH --time=00:02:00
+#SBATCH --qos=training
 #SBATCH --workdir=. 
 #SBATCH --output=multinode_%j.out
 #SBATCH --error=multinode_%j.err 
-#SBATCH --reservation=VPHSUMMER18
-
 
 echo "Who am I?"
 whoami

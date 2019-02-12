@@ -2,10 +2,10 @@
 #SBATCH --job-name="test_serial"
 #SBATCH --ntasks=1
 #SBATCH --time=00:02:00
-#SBATCH --workdir=. 
+#SBATCH --qos=training
+#SBATCH --workdir=.
 #SBATCH --output=serial_%j.out
-#SBATCH --error=serial_%j.err 
-#SBATCH --reservation=VPHSUMMER18
+#SBATCH --error=serial_%j.err
 
 
 echo "Who am I?"
