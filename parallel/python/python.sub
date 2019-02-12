@@ -1,0 +1,28 @@
+#!/bin/bash
+#SBATCH --job-name="python"
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=20
+#SBATCH --qos=debug
+#SBATCH --time=01:00:00
+#SBATCH --workdir=. 
+#SBATCH --output=python_%j.out
+#SBATCH --error=python_%j.err 
+
+# Loading python module
+module load python
+module list
+
+echo "OpenMP parallelism"
+echo
+
+for ncores in {1..10}
+
+do
+
+export OMP_NUM_THREADS=$ncores
+echo "CPUS: " $OMP_NUM_THREADS
+{ time python linalg.py ; } 2>&1 >/dev/null | grep 'real'
+echo
+
+done
+
