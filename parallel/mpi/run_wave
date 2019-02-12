@@ -4,8 +4,8 @@
 #SBATCH --qos=training
 #SBATCH --time=01:00:00
 #SBATCH --workdir=.
-#SBATCH --output=wave_%j.out
-#SBATCH --error=wave_%j.err
+#SBATCH --output=wave.out
+#SBATCH --error=wave.err
 
 module load intel
 module load impi
