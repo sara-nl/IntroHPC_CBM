@@ -2,7 +2,7 @@
 #SBATCH --job-name="python"
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=20
-#SBATCH --qos=debug
+#SBATCH --qos=training
 #SBATCH --time=01:00:00
 #SBATCH --workdir=. 
 #SBATCH --output=python_%j.out
